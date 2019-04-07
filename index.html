@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-react" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/26/hello-world/" class="article-date">
-  <time datetime="2019-02-26T09:11:38.376Z" itemprop="datePublished">2019-02-26</time>
+    <a href="/2019/03/21/react/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/26/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/03/21/react/">react常见面试题</a>
     </h1>
   
 
@@ -84,20 +84,265 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>1、redux中间件<br>中间件提供第三方插件的模式，自定义拦截 action -&gt; reducer 的过程。变为 action -&gt; middlewares -&gt; reducer 。这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。<br>常见的中间件：<br>redux-logger：提供日志输出<br>redux-thunk：处理异步操作<br>redux-promise：处理异步操作，actionCreator的返回值是promise</p>
+<p>2、redux有什么缺点<br>1.一个组件所需要的数据，必须由父组件传过来，而不能像flux中直接从store取。<br>2.当一个组件相关数据更新时，即使父组件不需要用到这个组件，父组件还是会重新render，可能会有效率影响，或者需要写复杂的shouldComponentUpdate进行判断。</p>
+<p>3、react组件的划分业务组件技术组件？<br>根据组件的职责通常把组件分为UI组件和容器组件。<br>UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。<br>两者通过React-Redux 提供connect方法联系起来。</p>
+<p>4、react生命周期函数<br>这个问题要考察的是组件的生命周期<br>一、初始化阶段：<br>getDefaultProps:获取实例的默认属性<br>getInitialState:获取每个实例的初始化状态<br>componentWillMount：组件即将被装载、渲染到页面上<br>render:组件在这里生成虚拟的DOM节点<br>componentDidMount:组件真正在被装载之后[AJAX请求]<br>二、运行中状态：<br>componentWillReceiveProps:组件将要接收到属性的时候调用<br>shouldComponentUpdate:组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）<br>componentWillUpdate:组件即将更新不能修改属性和状态<br>render:组件重新描绘<br>componentDidUpdate:组件已经更新<br>三、销毁阶段：<br>componentWillUnmount:组件即将销毁</p>
+<p>5、react性能优化是哪个周期函数？<br>shouldComponentUpdate 这个方法用来判断是否需要调用render方法重新描绘dom。因为dom的描绘非常消耗性能，如果我们能在shouldComponentUpdate方法中能够写出更优化的dom diff算法，可以极大的提高性能。</p>
+<p>6、为什么虚拟dom会提高性能?<br>虚拟dom相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的dom操作，从而提高性能。<br>具体实现步骤如下：<br>用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中<br>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异<br>把2所记录的差异应用到步骤1所构建的真正的DOM树上，视图就更新了。</p>
+<p>7、diff算法?<br>把树形结构按照层级分解，只比较同级元素。<br>给列表结构的每个单元添加唯一的key属性，方便比较。<br>React 只会匹配相同 class 的 component（这里面的class指的是组件的名字）<br>合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.<br>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。</p>
+<p>8、react性能优化方案<br>（1）重写shouldComponentUpdate来避免不必要的dom操作。<br>（2）使用 production 版本的react.js。<br>（3）使用key来帮助React识别列表中所有子组件的最小变化。</p>
+<p>9、简述flux 思想<br>Flux 的最大特点，就是数据的”单向流动”。<br>1.用户访问 View<br>2.View 发出用户的 Action<br>3.Dispatcher 收到 Action，要求 Store 进行相应的更新<br>4.Store 更新后，发出一个”change”事件<br>5.View 收到”change”事件后，更新页面</p>
+<p>10、React项目用过什么脚手架？Mern? Yeoman?<br>Mern：MERN是脚手架的工具，它可以很容易地使用Mongo, Express, React and NodeJS生成同构JS应用。它最大限度地减少安装时间，并得到您使用的成熟技术来加速开发。</p>
+<p>11、 Reactjs component 中 prop 和 state 的区别<br>props放初始化数据，一直不变的，state就是放要变的。<br>需要理解的是，props是一个父组件传递给子组件的数据流，这个数据流可以一直传递到子孙组件。而 state代表的是一个组件内部自身的状态（可以是父组件、子孙组件）<br>改变一个组件自身状态，从语义上来说，就是这个组件内部已经发生变化，有可能需要对此组件以及组件所包含的子孙组件进行重渲染。<br>两者的变化都有可能导致组件重渲染<br>state：如果component的某些状态需要被改变，并且会影响到component的render，那么这些状态就应该用state表示。例如：一个购物车的component，会根据用户在购物车中添加的产品和产品数量，显示不同的价格，那么“总价”这个状态，就应该用state表示。<br>props:如果component的某些状态由外部所决定，并且会影响到component的render，那么这些状态就应该用props表示。例如：一个下拉菜单的component，有哪些菜单项，是由这个component的使用者和使用场景决定的，那么“菜单项”这个状态，就应该用props表示，并且由外部传入。<br>11、调用 setState 之后发生了什么？<br>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个UI界面。在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</p>
+<p>12、React 中 refs 的作用是什么？<br>Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加ref属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回</p>
+<p>13、React 中 keys 的作用是什么？<br>Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。在开发过程中，我们需要保证某个元素的 key 在其同级元素中具有唯一性。在 React Diff 算法中 React 会借助元素的 Key 值来判断该元素是新近创建的还是被移动而来的元素，从而减少不必要的元素重渲染。此外，React 还需要借助 Key 值来判断元素与本地状态的关联关系，因此我们绝不可忽视转换函数中 Key 的重要性。</p>
+<p>14、shouldComponentUpdate 的作用是啥以及为何它这么重要？<br>shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新。</p>
+<p>15、在生命周期中的哪一步你应该发起 AJAX 请求？<br>我们应当将AJAX 请求放到 componentDidMount 函数中执行，主要原因有下：<br>React 下一代调和算法 Fiber 会通过开始或停止渲染的方式优化应用性能，其会影响到 componentWillMount 的触发次数。对于 componentWillMount 这个生命周期函数的调用次数会变得不确定，React 可能会多次频繁调用 componentWillMount。如果我们将 AJAX 请求放到 componentWillMount 函数中，那么显而易见其会被触发多次，自然也就不是好的选择。<br>如果我们将 AJAX 请求放置在生命周期的其他函数中，我们并不能保证请求仅在组件挂载完毕后才会要求响应。如果我们的数据请求在组件挂载之前就完成，并且调用了setState函数将数据添加到组件状态中，对于未挂载的组件则会报错。而在 componentDidMount 函数中进行 AJAX 请求则能有效避免这个问题。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/26/hello-world/" data-id="cjsmhv83c0000x0vn5ma9g57l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/21/react/" data-id="cju6u6m1u0001i8vnuw33iai7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-generator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/generator/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/generator/">generator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//执行 Generator 函数会返回一个遍历器对象，也就是说是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">helloWorldGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'hello'</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'world'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'ending'</span>;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">var</span> hw = helloWorldGenerator();</span><br><span class="line"></span><br><span class="line">  hw.next()</span><br><span class="line">  <span class="comment">// &#123; value: 'hello', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">  hw.next()</span><br><span class="line">  <span class="comment">// &#123; value: 'world', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">  hw.next()</span><br><span class="line">  <span class="comment">// &#123; value: 'ending', done: true &#125;</span></span><br><span class="line"></span><br><span class="line">  hw.next()</span><br><span class="line">  <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//总结一下，调用 Generator 函数，返回一个遍历器对象，代表 Generator 函数的内部指针。以后，每次调用遍历器对象的next方法，就会返回一个有着value和done两个属性的对象。value属性表示当前的内部状态的值，是yield表达式后面那个表达式的值；done属性是一个布尔值，表示是否遍历结束。</span></span><br></pre></td></tr></table></figure>
+<h2 id="generator写法"><a href="#generator写法" class="headerlink" title="generator写法"></a>generator写法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>*<span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/21/generator/" data-id="cju6u6m340002i8vnraz0tdy1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-h5.c3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/h5.c3/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/h5.c3/">h5新增标签及css3新增属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>h5是html的最新版本，是14年由w3c完成标准制定。增强了，浏览器的原生功能，减少浏览器插件（eg：flash）的应用，提高用户体验满意度，让开发更加方便。 </p>
+<ul>
+<li>h5新增的标签</li>
+</ul>
+<p>新增元素    说明<br>video    表示一段视频并提供播放的用户界面<br>audio    表示音频<br>canvas    表示位图区域<br>source    为video和audio提供数据源<br>track    为video和audio指定字母<br>svg    定义矢量图<br>code    代码段<br>figure    和文档有关的图例<br>figcaption    图例的说明<br>main<br>time    日期和时间值<br>mark    高亮的引用文字<br>datalist    提供给其他控件的预定义选项<br>keygen    秘钥对生成器控件<br>output    计算值<br>progress    进度条<br>menu    菜单<br>embed    嵌入的外部资源<br>menuitem    用户可点击的菜单项<br>menu    菜单<br>template<br>section<br>nav<br>aside<br>article<br>footer<br>header    </p>
+<ul>
+<li>css3<br>css3被划分为模块，最重要的几个模块包括：选择器、框模型、背景和边框、文本效果、2D/3D 转换、动画、多列布局、用户界面</li>
+</ul>
+<p>选择器</p>
+<p>框模型</p>
+<p>背景和边框<br>border-radius、box-shadow、border-image、<br>background-size：规定背景图片的尺寸<br>background-origin：规定背景图片的定位区域<br>background-clip：规定背景的绘制区域<br>文本效果（常用）<br>text-shadow：设置文字阴影<br>word-wrap：强制换行<br>word-break<br>css3提出@font-face规则，规则中定义了font-family、font-weight、font-style、font-stretch、src、unicode-range<br>2/3D转换<br>transform：向元素应用2/3D转换<br>transition：过渡<br>动画<br>@keyframes规则：<br>animation、animation-name、animation-duration等<br>用户界面（常用）<br>box-sizing、resize<br>css3新增伪类<br>：nth-child()<br>：nth-last-child()<br>：only-child<br>：last-child<br>：nth-of-type()<br>：only-of-type()<br>：empty<br>：target 这个伪类允许我们选择基于URL的元素，如果这个元素有一个识别器（比如跟着一个#），那么:target会对使用这个ID识别器的元素增加样式。<br>：enabled<br>：disabled<br>：checked<br>：not</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/21/h5.c3/" data-id="cju6u6m390003i8vntsrv77f6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/vue/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/vue/">vue面试题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、vue是一套渐进式框架的理解</p>
+<p>在我看来，渐进式代表的含义是：主张最少。<br>每个框架都不可避免会有自己的一些特点，从而会对使用者有一定的要求，这些要求就是主张，主张有强有弱，它的强势程度会影响在业务开发中的使用方式。<br>比如说，Angular，它两个版本都是强主张的，如果你用它，必须接受以下东西：<br>必须使用它的模块机制- 必须使用它的依赖注入- 必须使用它的特殊形式定义组件（这一点每个视图框架都有，难以避免）<br>所以Angular是带有比较强的排它性的，如果你的应用不是从头开始，而是要不断考虑是否跟其他东西集成，这些主张会带来一些困扰。<br>比如React，它也有一定程度的主张，它的主张主要是函数式编程的理念，比如说，你需要知道什么是副作用，什么是纯函数，如何隔离副作用。它的侵入性看似没有Angular那么强，主要因为它是软性侵入。<br>Vue可能有些方面是不如React，不如Angular，但它是渐进的，没有强主张，你可以在原有大系统的上面，把一两个组件改用它实现，当jQuery用；也可以整个用它全家桶开发，当Angular用；还可以用它的视图，搭配你自己设计的整个下层用。你可以在底层数据逻辑的地方用OO和设计模式的那套理念，也可以函数式，都可以，它只是个轻量视图而已，只做了自己该做的事，没有做不该做的事，仅此而已。<br>渐进式的含义，我的理解是：没有多做职责之外的事。</p>
+<p>2、Vue常用的指令<br>3、v-if VS v-show区别<br>4、Vue常用修饰符<br>5、v-on可以监听多个方法吗<br>可以，代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"text"</span> :value=<span class="string">"name"</span> @input=<span class="string">"onInput"</span> @focus=<span class="string">"onFocus"</span> @blur=<span class="string">"onBlur"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>6、vue中key值的作用</p>
+<p>需要使用key来给每个节点做一个唯一标识，Diff算法就可以正确的识别此节点，找到正确的位置区插入新的节点。<br>其实不只是vue，react中在执行列表渲染时也会要求给每个组件添加上key这个属性。<br>要解释key的作用，不得不先介绍一下虚拟DOM的Diff算法了。<br>vue和react的虚拟DOM的Diff算法大致相同。</p>
+<p>8、Vue组件中的data为什么必须是函数<br>当我们定义一个 组件时( <button-counter>)，你可能会发现它的 data 并不是像这样直接提供一个对象：<br>data: {<br>  count: 0<br>}</button-counter></p>
+<p>取而代之的是，一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝：<br>data: function () {<br>  return {<br>    count: 0<br>  }<br>}<br>9、v-for和v-if的优先级<br>当它们处于同一节点，v-for 的优先级比 v-if 更高，这意味着 v-if 将分别重复运行于每个 v-for 循环中。当你想为仅有的一些项渲染节点时，这种优先级的机制会十分有用。<br>11、keep-alive组件的作用<br>当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。<br>12、Vue生命周期详解</p>
+<p>什么是Vue的生命周期<br>Vue实例有一个完整的生命周期，也就是说从开始创建、初始化数据、编译模板、挂载DOM、渲染-更新-渲染、卸载等一系列过程，我们称为Vue实例的生命周期。钩子就是在某个阶段给你一个做某些处理的机会。<br>生命周期的作用<br>就是在某个阶段给你一个做某些处理的机会。<br>生命周期总共有几个阶段<br>beforeCreate（创建前）：在实例初始化之后，数据观测和事件配置之前被调用，此时组件的选项对象还未创建，因此无法访问methods，data，computed等上的方法和数据。<br>created（创建后）：实例已经创建完成之后被调用，在这一步，实例已完成了以下配置：数据观测、属性和方法的运算，watch/event事件回调。然而，挂载阶段还没有开始，$el属性目前不可见。created钩子可以获取Vue的data，调用Vue方法，获取原本HTML上的直接加载出来的DOM，但是无法获取到通过挂载模板生成的DOM。这是一个常用的生命周期，因为你可以调用methods中的方法、改变data中的数据，并且修改可以通过vue的响应式绑定体现在页面上、获取computed中的计算属性等等。通常我们可以在这里对实例进行预处理。也有一些童鞋喜欢在这里发ajax请求，值得注意的是，这个周期中是没有什么方法来对实例化过程进行拦截的。因此假如有某些数据必须获取才允许进入页面的话，并不适合在这个页面发请求。<br>建议在组件路由勾子beforeRouteEnter中来完成。<br>beforeMonut：挂载开始之前被调用：虚拟dom已经创建完成，马上就要渲染，在这里也可以更改数据，相关的 render 函数首次被调用（虚拟DOM），实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上。<br>mounted[ˈmaʊntɪd]：挂载完成，也就是模板中的HTML渲染到了HTML页面中，此时一般可以做一些ajax操作，组件已经出现在页面中，数据、真实dom都已经处理好了，事件都已经挂载好了mounted只会执行一次。<br>beforeUpdate（更新前）：在数据更新之前调用，发生在虚拟DOM重新渲染和打补丁之前。可以在该钩子中进一步地更改状态，不会触发附加的重渲染过程。然后vue的虚拟dom机制会重新构建虚拟dom与上一次的虚拟dom树利用diff算法进行对比之后重新渲染。<br>updated[ʌp’deɪtɪd]（更新后）：在由于数据更改导致的虚拟DOM重新渲染和打补丁之后调用。调用时，组件DOM已经更新，所以可以执行依赖于DOM的操作。然而在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用。<br>beforeDestroy[dɪˈstrɔɪ]（销毁前）：在实例销毁之前调用。实例仍然完全可用。1.这一步还可以用this来获取实例。2.一般在这一步做一些重置的操作。比如清除掉组件中的 定时器 和 监听的dom事件。<br>destroyed[dɪs’trɔɪd]（销毁后）：在实例销毁之后调用。调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。<br>第一次页面加载会触发哪几个钩子<br>beforeCreate<br>DOM 渲染在哪个周期中就已经完成<br>mounted<br>生命周期使用场景举例<br>beforeCreate：可以在这里加一个loading<br>created：loading结束做一些初始化操作<br>mounted：ajax请求，配合路由钩子做一些事情<br>beforeDestory：你确认删除吗？<br>destoryed：当前组件已被删除，清空相关内容<br>15、单页面应用和多页面应用区别及优缺点<br>单页面应用（SPA），通俗一点说就是指只有一个主页面的应用，浏览器一开始要加载所有必须的 html, js, css。所有的页面内容都包含在这个所谓的主页面中。但在写的时候，还是会分开写（页面片段），然后在交互的时候由路由程序动态载入，单页面的页面跳转，仅刷新局部资源。多应用于pc端。<br>多页面（MPA），就是指一个应用中有多个页面，页面跳转时是整页刷新</p>
+<p>单页面的优点：</p>
+<p>用户体验好，快，内容的改变不需要重新加载整个页面，基于这一点spa对服务器压力较小<br>前后端分离<br>页面效果会比较炫酷（比如切换页面内容时的专场动画）</p>
+<p>单页面缺点：</p>
+<p>不利于seo<br>导航不可用，如果一定要导航需要自行实现前进、后退。（由于是单页面不能用浏览器的前进后退功能，所以需要自己建立堆栈管理）<br>初次加载时耗时多<br>页面复杂度提高很多</p>
+<p>16、什么是计算属性？什么情况使用？<br>模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护，例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"example"</span>&gt;</span><br><span class="line">  &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，这里是想要显示变量 message 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。<br>所以，对于任何复杂逻辑，你都应当使用计算属性。</p>
+<p>18、computed、methods的区别<br>两种方式的最终结果确实是完全相同的。然而，不同的是计算属性是基于它们的依赖进行缓存的。只在相关依赖发生改变时它们才会重新求值。这就意味着只要值还没有发生改变，多次访问 定义的计算属性会立即返回之前的计算结果，而不必再次执行函数。<br>相比之下，每当触发重新渲染时，调用方法(methods)将总会再次执行函数。<br>我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 A，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 A 。如果没有缓存，我们将不可避免的多次执行 A 的 getter！如果你不希望有缓存，请用方法来替代。</p>
+<p>19、什么是自定义指令，有哪些钩子函数及自定义指令的使用场景<br>有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。<br>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：<br>bind：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。<br>inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。<br>update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。<br>componentUpdated：指令所在组件的 VNode 及其子 VNode 全部更新后调用。<br>unbind：只调用一次，指令与元素解绑时调用。</p>
+<p>20、父组件获取异步动态数据传递给子组件</p>
+<p>在父组件中使用axios获取异步数据传给子组件，但是发现子组件在渲染的时候并没有数据，在created里面打印也是空的，结果发现一开始子组件绑定的数据是空的，在请求数据没有返回数据时，子组件就已经加载了，并且他绑定的值也是空的，问题找到了，怎么解决呢？</p>
+<p>开始的时候让子组件隐藏,然后等数据返回的时候，让子组件显示<br>通过v-if，也就是判断数据是否为空，为空就不渲染，也能解决了<br>为不能读取的属性添加一个默认值，就可以很好的解决了</p>
+<p>单页面应用(SPA)的核心之一是:</p>
+<p>更新视图而不重新请求页面;<br>vue-router在实现单页面前端路由时，提供了三种方式：Hash模式、History模式、abstract模式，根据mode参数来决定采用哪一种方式。</p>
+<p>路由模式<br>vue-router 提供了三种运行模式：<br>● hash: 使用 URL hash 值来作路由。默认模式。<br>● history: 依赖 HTML5 History API 和服务器配置。查看 HTML5 History 模式。<br>● abstract: 支持所有 JavaScript 运行环境，如 Node.js 服务器端。<br>Hash模式<br>vue-router 默认模式是 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，当 URL 改变时，页面不会去重新加载。<br>hash（#）是URL 的锚点，代表的是网页中的一个位置，单单改变#后的部分（/#/..），浏览器只会加载相应位置的内容，不会重新加载网页，也就是说 #是用来指导浏览器动作的，对服务器端完全无用，HTTP请求中不包括#；同时每一次改变#后的部分，都会在浏览器的访问历史中增加一个记录，使用”后退”按钮，就可以回到上一个位置；所以说Hash模式通过锚点值的改变，根据不同的值，渲染指定DOM位置的不同数据。<br>JavaScript实现SPA路由hash模式详解<br>History模式<br>HTML5 History API提供了一种功能，能让开发人员在不刷新整个页面的情况下修改站点的URL，就是利用 history.pushState API 来完成 URL 跳转而无须重新加载页面；<br>由于hash模式会在url中自带#，如果不想要很丑的 hash，我们可以用路由的 history 模式，只需要在配置路由规则时，加入”mode: ‘history’”,这种模式充分利用 history.pushState API 来完成 URL 跳转而无须重新加载页面。<br>//main.js文件中<br>const router = new VueRouter({<br>  mode: ‘history’,<br>  routes: […]<br>})</p>
+<p>当使用 history 模式时，URL 就像正常的 url，例如 yoursite.com/user/id，比较好… 不过这种模式有点问题，还需要后台配置支持。你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面，这个页面就是你 app 依赖的页面，如果不这么做，直接访问页面空白</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/21/vue/" data-id="cju6u6m4c0004i8vncqxgajtu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vuerequire" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/vuerequire/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/vuerequire/">vue按需加载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>vue异步组件技术<br>vue-router配置路由，使用vue的异步组件技术，可以实现按需加载。<br>但是，这种情况下一个组件生成一个js文件。<br>举例如下：<pre><code>{
+    path: &apos;/promisedemo&apos;,
+    name: &apos;PromiseDemo&apos;,
+    component: resolve =&gt; require([&apos;../components/PromiseDemo&apos;], resolve)
+}
+</code></pre></li>
+<li>es提案的import()<br>推荐使用这种方式(需要webpack &gt; 2.4)<br>webpack官方文档：webpack中使用import()<br>vue官方文档：路由懒加载(使用import())<br>vue-router配置路由，代码如下：<br>// 下面2行代码，没有指定webpackChunkName，每个组件打包成一个js文件。<br>const ImportFuncDemo1 = () =&gt; import(‘../components/ImportFuncDemo1’)<br>const ImportFuncDemo2 = () =&gt; import(‘../components/ImportFuncDemo2’)<br>// 下面2行代码，指定了相同的webpackChunkName，会合并打包成一个js文件。<br>// const ImportFuncDemo = () =&gt; import(/<em> webpackChunkName: ‘ImportFuncDemo’ </em>/ ‘../components/ImportFuncDemo’)<br>// const ImportFuncDemo2 = () =&gt; import(/<em> webpackChunkName: ‘ImportFuncDemo’ </em>/ ‘../components/ImportFuncDemo2’)<br>export default new Router({<br> routes: [<pre><code>{
+    path: &apos;/importfuncdemo1&apos;,
+    name: &apos;ImportFuncDemo1&apos;,
+    component: ImportFuncDemo1
+},
+{
+    path: &apos;/importfuncdemo2&apos;,
+    name: &apos;ImportFuncDemo2&apos;,
+    component: ImportFuncDemo2
+}
+</code></pre> ]<br>})</li>
+<li>webpack提供的require.ensure()<br>vue-router配置路由，使用webpack的require.ensure技术，也可以实现按需加载。<br>这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。<br>举例如下：<pre><code>{
+    path: &apos;/promisedemo&apos;,
+    name: &apos;PromiseDemo&apos;,
+    component: resolve =&gt; require.ensure([], () =&gt; resolve(require(&apos;../components/PromiseDemo&apos;)), &apos;demo&apos;)
+},
+{
+    path: &apos;/hello&apos;,
+    name: &apos;Hello&apos;,
+    // component: Hello
+    component: resolve =&gt; require.ensure([], () =&gt; resolve(require(&apos;../components/Hello&apos;)), &apos;demo&apos;)
+}
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/21/vuerequire/" data-id="cju6uy5nq0000pcvnba4py7f6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/26/hello-world/" class="article-date">
+  <time datetime="2019-02-26T09:11:38.376Z" itemprop="datePublished">2019-02-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: Hello</p>
+<pre><code>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/26/hello-world/" data-id="cju6u6lzd0000i8vnqu6jfczg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -125,7 +370,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
     </div>
   </div>
 
@@ -138,7 +383,23 @@
       <ul>
         
           <li>
-            <a href="/2019/02/26/hello-world/">Hello World</a>
+            <a href="/2019/03/21/react/">react常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/generator/">generator</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/h5.c3/">h5新增标签及css3新增属性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/vue/">vue面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/vuerequire/">vue按需加载</a>
           </li>
         
       </ul>

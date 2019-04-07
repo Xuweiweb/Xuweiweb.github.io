@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>vue按需加载 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="vue异步组件技术vue-router配置路由，使用vue的异步组件技术，可以实现按需加载。但是，这种情况下一个组件生成一个js文件。举例如下：{     path: &amp;apos;/promisedemo&amp;apos;,     name: &amp;apos;PromiseDemo&amp;apos;,     component: resolve =&amp;gt; require([&amp;apos;../compone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue按需加载">
+<meta property="og:url" content="http://yoursite.com/2019/03/21/vuerequire/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="vue异步组件技术vue-router配置路由，使用vue的异步组件技术，可以实现按需加载。但是，这种情况下一个组件生成一个js文件。举例如下：{     path: &amp;apos;/promisedemo&amp;apos;,     name: &amp;apos;PromiseDemo&amp;apos;,     component: resolve =&amp;gt; require([&amp;apos;../compone">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-07T11:42:48.600Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue按需加载">
+<meta name="twitter:description" content="vue异步组件技术vue-router配置路由，使用vue的异步组件技术，可以实现按需加载。但是，这种情况下一个组件生成一个js文件。举例如下：{     path: &amp;apos;/promisedemo&amp;apos;,     name: &amp;apos;PromiseDemo&amp;apos;,     component: resolve =&amp;gt; require([&amp;apos;../compone">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vuerequire" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/vuerequire/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue按需加载
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>vue异步组件技术<br>vue-router配置路由，使用vue的异步组件技术，可以实现按需加载。<br>但是，这种情况下一个组件生成一个js文件。<br>举例如下：<pre><code>{
+    path: &apos;/promisedemo&apos;,
+    name: &apos;PromiseDemo&apos;,
+    component: resolve =&gt; require([&apos;../components/PromiseDemo&apos;], resolve)
+}
+</code></pre></li>
+<li>es提案的import()<br>推荐使用这种方式(需要webpack &gt; 2.4)<br>webpack官方文档：webpack中使用import()<br>vue官方文档：路由懒加载(使用import())<br>vue-router配置路由，代码如下：<br>// 下面2行代码，没有指定webpackChunkName，每个组件打包成一个js文件。<br>const ImportFuncDemo1 = () =&gt; import(‘../components/ImportFuncDemo1’)<br>const ImportFuncDemo2 = () =&gt; import(‘../components/ImportFuncDemo2’)<br>// 下面2行代码，指定了相同的webpackChunkName，会合并打包成一个js文件。<br>// const ImportFuncDemo = () =&gt; import(/<em> webpackChunkName: ‘ImportFuncDemo’ </em>/ ‘../components/ImportFuncDemo’)<br>// const ImportFuncDemo2 = () =&gt; import(/<em> webpackChunkName: ‘ImportFuncDemo’ </em>/ ‘../components/ImportFuncDemo2’)<br>export default new Router({<br> routes: [<pre><code>{
+    path: &apos;/importfuncdemo1&apos;,
+    name: &apos;ImportFuncDemo1&apos;,
+    component: ImportFuncDemo1
+},
+{
+    path: &apos;/importfuncdemo2&apos;,
+    name: &apos;ImportFuncDemo2&apos;,
+    component: ImportFuncDemo2
+}
+</code></pre> ]<br>})</li>
+<li>webpack提供的require.ensure()<br>vue-router配置路由，使用webpack的require.ensure技术，也可以实现按需加载。<br>这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。<br>举例如下：<pre><code>{
+    path: &apos;/promisedemo&apos;,
+    name: &apos;PromiseDemo&apos;,
+    component: resolve =&gt; require.ensure([], () =&gt; resolve(require(&apos;../components/PromiseDemo&apos;)), &apos;demo&apos;)
+},
+{
+    path: &apos;/hello&apos;,
+    name: &apos;Hello&apos;,
+    // component: Hello
+    component: resolve =&gt; require.ensure([], () =&gt; resolve(require(&apos;../components/Hello&apos;)), &apos;demo&apos;)
+}
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/21/vuerequire/" data-id="cju6uy5nq0000pcvnba4py7f6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/21/vue/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue面试题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/21/react/">react常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/generator/">generator</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/h5.c3/">h5新增标签及css3新增属性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/vue/">vue面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/vuerequire/">vue按需加载</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

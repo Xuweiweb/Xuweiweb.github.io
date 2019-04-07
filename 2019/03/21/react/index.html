@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>react常见面试题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、redux中间件中间件提供第三方插件的模式，自定义拦截 action -&amp;gt; reducer 的过程。变为 action -&amp;gt; middlewares -&amp;gt; reducer 。这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。常见的中间件：redux-logger：提供日志输出redux-thunk：处理异步操作redux-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react常见面试题">
+<meta property="og:url" content="http://yoursite.com/2019/03/21/react/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、redux中间件中间件提供第三方插件的模式，自定义拦截 action -&amp;gt; reducer 的过程。变为 action -&amp;gt; middlewares -&amp;gt; reducer 。这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。常见的中间件：redux-logger：提供日志输出redux-thunk：处理异步操作redux-">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-02T06:38:49.781Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react常见面试题">
+<meta name="twitter:description" content="1、redux中间件中间件提供第三方插件的模式，自定义拦截 action -&amp;gt; reducer 的过程。变为 action -&amp;gt; middlewares -&amp;gt; reducer 。这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。常见的中间件：redux-logger：提供日志输出redux-thunk：处理异步操作redux-">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-react" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/react/" class="article-date">
+  <time datetime="2019-03-21T12:30:02.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react常见面试题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、redux中间件<br>中间件提供第三方插件的模式，自定义拦截 action -&gt; reducer 的过程。变为 action -&gt; middlewares -&gt; reducer 。这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。<br>常见的中间件：<br>redux-logger：提供日志输出<br>redux-thunk：处理异步操作<br>redux-promise：处理异步操作，actionCreator的返回值是promise</p>
+<p>2、redux有什么缺点<br>1.一个组件所需要的数据，必须由父组件传过来，而不能像flux中直接从store取。<br>2.当一个组件相关数据更新时，即使父组件不需要用到这个组件，父组件还是会重新render，可能会有效率影响，或者需要写复杂的shouldComponentUpdate进行判断。</p>
+<p>3、react组件的划分业务组件技术组件？<br>根据组件的职责通常把组件分为UI组件和容器组件。<br>UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。<br>两者通过React-Redux 提供connect方法联系起来。</p>
+<p>4、react生命周期函数<br>这个问题要考察的是组件的生命周期<br>一、初始化阶段：<br>getDefaultProps:获取实例的默认属性<br>getInitialState:获取每个实例的初始化状态<br>componentWillMount：组件即将被装载、渲染到页面上<br>render:组件在这里生成虚拟的DOM节点<br>componentDidMount:组件真正在被装载之后[AJAX请求]<br>二、运行中状态：<br>componentWillReceiveProps:组件将要接收到属性的时候调用<br>shouldComponentUpdate:组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）<br>componentWillUpdate:组件即将更新不能修改属性和状态<br>render:组件重新描绘<br>componentDidUpdate:组件已经更新<br>三、销毁阶段：<br>componentWillUnmount:组件即将销毁</p>
+<p>5、react性能优化是哪个周期函数？<br>shouldComponentUpdate 这个方法用来判断是否需要调用render方法重新描绘dom。因为dom的描绘非常消耗性能，如果我们能在shouldComponentUpdate方法中能够写出更优化的dom diff算法，可以极大的提高性能。</p>
+<p>6、为什么虚拟dom会提高性能?<br>虚拟dom相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的dom操作，从而提高性能。<br>具体实现步骤如下：<br>用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中<br>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异<br>把2所记录的差异应用到步骤1所构建的真正的DOM树上，视图就更新了。</p>
+<p>7、diff算法?<br>把树形结构按照层级分解，只比较同级元素。<br>给列表结构的每个单元添加唯一的key属性，方便比较。<br>React 只会匹配相同 class 的 component（这里面的class指的是组件的名字）<br>合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.<br>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。</p>
+<p>8、react性能优化方案<br>（1）重写shouldComponentUpdate来避免不必要的dom操作。<br>（2）使用 production 版本的react.js。<br>（3）使用key来帮助React识别列表中所有子组件的最小变化。</p>
+<p>9、简述flux 思想<br>Flux 的最大特点，就是数据的”单向流动”。<br>1.用户访问 View<br>2.View 发出用户的 Action<br>3.Dispatcher 收到 Action，要求 Store 进行相应的更新<br>4.Store 更新后，发出一个”change”事件<br>5.View 收到”change”事件后，更新页面</p>
+<p>10、React项目用过什么脚手架？Mern? Yeoman?<br>Mern：MERN是脚手架的工具，它可以很容易地使用Mongo, Express, React and NodeJS生成同构JS应用。它最大限度地减少安装时间，并得到您使用的成熟技术来加速开发。</p>
+<p>11、 Reactjs component 中 prop 和 state 的区别<br>props放初始化数据，一直不变的，state就是放要变的。<br>需要理解的是，props是一个父组件传递给子组件的数据流，这个数据流可以一直传递到子孙组件。而 state代表的是一个组件内部自身的状态（可以是父组件、子孙组件）<br>改变一个组件自身状态，从语义上来说，就是这个组件内部已经发生变化，有可能需要对此组件以及组件所包含的子孙组件进行重渲染。<br>两者的变化都有可能导致组件重渲染<br>state：如果component的某些状态需要被改变，并且会影响到component的render，那么这些状态就应该用state表示。例如：一个购物车的component，会根据用户在购物车中添加的产品和产品数量，显示不同的价格，那么“总价”这个状态，就应该用state表示。<br>props:如果component的某些状态由外部所决定，并且会影响到component的render，那么这些状态就应该用props表示。例如：一个下拉菜单的component，有哪些菜单项，是由这个component的使用者和使用场景决定的，那么“菜单项”这个状态，就应该用props表示，并且由外部传入。<br>11、调用 setState 之后发生了什么？<br>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个UI界面。在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</p>
+<p>12、React 中 refs 的作用是什么？<br>Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加ref属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回</p>
+<p>13、React 中 keys 的作用是什么？<br>Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。在开发过程中，我们需要保证某个元素的 key 在其同级元素中具有唯一性。在 React Diff 算法中 React 会借助元素的 Key 值来判断该元素是新近创建的还是被移动而来的元素，从而减少不必要的元素重渲染。此外，React 还需要借助 Key 值来判断元素与本地状态的关联关系，因此我们绝不可忽视转换函数中 Key 的重要性。</p>
+<p>14、shouldComponentUpdate 的作用是啥以及为何它这么重要？<br>shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新。</p>
+<p>15、在生命周期中的哪一步你应该发起 AJAX 请求？<br>我们应当将AJAX 请求放到 componentDidMount 函数中执行，主要原因有下：<br>React 下一代调和算法 Fiber 会通过开始或停止渲染的方式优化应用性能，其会影响到 componentWillMount 的触发次数。对于 componentWillMount 这个生命周期函数的调用次数会变得不确定，React 可能会多次频繁调用 componentWillMount。如果我们将 AJAX 请求放到 componentWillMount 函数中，那么显而易见其会被触发多次，自然也就不是好的选择。<br>如果我们将 AJAX 请求放置在生命周期的其他函数中，我们并不能保证请求仅在组件挂载完毕后才会要求响应。如果我们的数据请求在组件挂载之前就完成，并且调用了setState函数将数据添加到组件状态中，对于未挂载的组件则会报错。而在 componentDidMount 函数中进行 AJAX 请求则能有效避免这个问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/21/react/" data-id="cju6u6m1u0001i8vnuw33iai7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/21/generator/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">generator</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/21/react/">react常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/generator/">generator</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/h5.c3/">h5新增标签及css3新增属性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/vue/">vue面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/21/vuerequire/">vue按需加载</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
